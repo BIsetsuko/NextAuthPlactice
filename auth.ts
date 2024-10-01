@@ -53,3 +53,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth(config);
 // HederのUserButtonコンポーネントでログイン認証を実装する
 
 // app/page.tsxでsession情報を表示させる
+
+// Headerコンポーネントでアバターを表示させり、ユーザー情報を表示させる
+// ログアウトボタンを押すとログアウトできるようにする

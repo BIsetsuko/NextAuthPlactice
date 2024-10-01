@@ -1,5 +1,8 @@
+import { Session } from "next-auth";
+
 type Props = {
-  session: any;
+  // null の場合があるため、Session を使うときは null を許容する必要がある
+  session: Session|null;
 };
 
 export default function SessionData({ session }: Props) {

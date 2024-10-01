@@ -58,3 +58,5 @@ export const { handlers, auth, signIn, signOut } = NextAuth(config);
 // ログアウトボタンを押すとログアウトできるようにする
 
 // app/client-example/page.tsxでsession情報を取得し表示させる（クライアントサイド）
+
+// server-example/page.tsxでsession情報を取得しpropsを渡して表示させる（サーバサイド）

@@ -60,3 +60,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth(config);
 // app/client-example/page.tsxでsession情報を取得し表示させる（クライアントサイド）
 
 // server-example/page.tsxでsession情報を取得しpropsを渡して表示させる（サーバサイド）
+
+// 17行目でログインしていない場合は、見れないはずなので実際に/protected-pageを作って確認する
+// ログインしていない場合はGithubの認証ページにリダイレクトされる。
+
+// ちなみログインボタンを押した時に、上記リダイレクトページに飛ばしたい場合はsignin関数にproviderを渡さなければOK

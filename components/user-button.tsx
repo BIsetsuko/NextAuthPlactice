@@ -11,12 +11,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { auth } from "@/auth";
 
 export default async function UserButton() {
-  // セッション状態（ログインしているかどうか）を確認する
+  // セッション（ログインしているかどうか）を取得
   const session = await auth();
   // ログインしていない場合はサインインコンポーネントを表示
   // サインインボタンを押したら認証できるようにしたいのでSignInコンポーネントを見にいく
   // providerをpropsとして渡すことで、どのプロバイダで認証するかを指定できる
-  if (!session?.user) return <SignIn provider="github"/>;
+  if (!session?.user) return <SignIn provider="github" />;
   // ログイン後サインインボタンが消えるようになる
 
   return (
@@ -25,14 +25,28 @@ export default async function UserButton() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="relative w-8 h-8 rounded-full">
-            <Avatar className="w-8 h-8"></Avatar>
+            <Avatar className="w-8 h-8">
+              {/* 取得したセッションからアバターを表示させる */}
+              {/* 型エラーのため条件分岐をつけてあげる */}
+              {session.user.image && (
+                <AvatarImage
+                  src={session.user.image}
+                  alt={session.user.name ?? ""}
+                />
+              )}
+            </Avatar>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56" align="end" forceMount>
           <DropdownMenuLabel className="font-normal">
             <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium leading-none"></p>
-              <p className="text-xs leading-none text-muted-foreground"></p>
+              <p className="text-sm font-medium leading-none">
+                {/* 名前やメールアドレスもsessionから表示させる */}
+                {session.user.name}
+              </p>
+              <p className="text-xs leading-none text-muted-foreground">
+                {session.user.email}
+              </p>
             </div>
           </DropdownMenuLabel>
           <DropdownMenuItem>

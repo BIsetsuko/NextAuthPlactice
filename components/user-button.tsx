@@ -6,10 +6,19 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { SignOut } from "./auth-components";
+import { SignIn, SignOut } from "./auth-components";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { auth } from "@/auth";
 
 export default async function UserButton() {
+  // セッション状態（ログインしているかどうか）を確認する
+  const session = await auth();
+  // ログインしていない場合はサインインコンポーネントを表示
+  // サインインボタンを押したら認証できるようにしたいのでSignInコンポーネントを見にいく
+  // providerをpropsとして渡すことで、どのプロバイダで認証するかを指定できる
+  if (!session?.user) return <SignIn provider="github"/>;
+  // ログイン後サインインボタンが消えるようになる
+
   return (
     <div className="flex gap-2 items-center">
       <span className="hidden text-sm sm:inline-flex"></span>

@@ -35,6 +35,17 @@ export default function ClientExample() {
         </CustomLink>
         コンポーネントが必要です。
       </p>
+      <div className="flex flex-col rounded-md bg-neutral-100">
+        <div className="p-4 font-bold rounded-t-md bg-neutral-200">
+          Current Session
+        </div>
+        <pre className="py-6 px-4 whitespace-pre-wrap break-all">
+          {/* クライアントコンポーネントでsessionの情報を表示させる。後ろの引数はコード整形するためのもの */}
+          {/* クライアントサイドの場合は表示までに少し時間がかかる　のでローディングつける */}
+          {status === "loading" && "Loading..."}
+          {JSON.stringify(session, null, 2)}
+        </pre>
+      </div>
     </div>
   );
 }

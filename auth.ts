@@ -1,12 +1,12 @@
 import NextAuth, { NextAuthConfig } from "next-auth";
 import Github from "next-auth/providers/github";
 
-// どのようなプロバイダでAuth認証ををしていくかを設定する
 export const config: NextAuthConfig = {
   theme: {
     // 今回はGoogleのロゴを使っている
     logo: "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
   },
+  // どのようなプロバイダでAuth認証ををしていくかを設定する
   providers: [
     Github({
       clientId: process.env.AUTH_GITHUB_ID,
